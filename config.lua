@@ -12,16 +12,42 @@ Config.DefaultPrice = 20 -- carwash
 Config.DirtLevel = 0.1 --carwash dirt level
 
 ConsumeablesEat = {
-    ["sandwich"] = math.random(35, 54),
-    ["tosti"] = math.random(40, 50),
-    ["twerks_candy"] = math.random(35, 54),
-    ["snikkel_candy"] = math.random(40, 50),
+    ["sandwich"] = math.random(10, 20),--1
+    ["lolly"] = math.random(5, 10),--0
+    ["twerks_candy"] = math.random(5, 10),--0
+    ["snikkel_candy"] = math.random(5, 10),--0
+    ["dddounut"] = math.random(20, 40),--2
+    ["superwich"] = math.random(20, 40),--2
+    ["ksandwich"] = math.random(40, 60),--3
+    ["bnuggets"] = math.random(40, 60),--3
+    ["pburger"] = math.random(40, 60),--3
+    ["twings"] = math.random(40, 60),--3
+    ["rtaco"] = math.random(60, 80),--4
+    ["pizza_salieri"] = math.random(60, 80),--4
+    ["broilernuggets"] = math.random(20, 40),--2
+    ["broiler"] = math.random(40, 60),--3
+    ["broilersalat"] = math.random(10, 20),--1
+    ["broilerpomme"] = math.random(10, 20),--1
+    ["broilermenu"] = math.random(60, 80),--4
+    ["flutschfinger"] = math.random(5, 10),--0
+    ["bratwurst"] = math.random(20, 40),--2
+    ["leberkäse"] = math.random(40, 60),--3
+    ["bruschetta"] = math.random(10, 20),--1
+    ["tiramisu"] = math.random(10, 20),--1
+    ["mozzagellastick"] = math.random(20, 40),--2
+    ["gelato"] = math.random(20, 40),--2
+    ["spaghettiaglio"] = math.random(40, 60),--3
+    ["spaghettibolo"] = math.random(40, 60),--3
+    ["saltimbocca"] = math.random(80, 100),--5
+    ["lasagne"] = math.random(60, 80),--4
 }
 
 ConsumeablesDrink = {
-    ["water_bottle"] = math.random(35, 54),
-    ["kurkakola"] = math.random(35, 54),
-    ["coffee"] = math.random(40, 50),
+    ["water_bottle"] = math.random(10, 20),--1
+    ["kurkakola"] = math.random(10, 20),--1
+    ["coffee"] = math.random(20, 40),--2
+    ["zeroade"] = math.random(60, 80),--4
+    ["robbybubble"] = math.random(40, 60),--3
 }
 
 ConsumeablesAlcohol = {
@@ -139,19 +165,19 @@ Config.CarWash = { -- carwash
         ["label"] = "Hands Free Carwash",
         ["coords"] = vector3(25.29, -1391.96, 29.33),
     },
+    -- [2] = {
+    --     ["label"] = "Hands Free Carwash",
+    --     ["coords"] = vector3(174.18, -1736.66, 29.35),
+    -- },
     [2] = {
-        ["label"] = "Hands Free Carwash",
-        ["coords"] = vector3(174.18, -1736.66, 29.35),
-    },
-    [3] = {
         ["label"] = "Hands Free Carwash",
         ["coords"] = vector3(-74.56, 6427.87, 31.44),
     },
-    [5] = {
+    [3] = {
         ["label"] = "Hands Free Carwash",
         ["coords"] = vector3(1363.22, 3592.7, 34.92),
     },
-    [6] = {
+    [4] = {
         ["label"] = "Hands Free Carwash",
         ["coords"] = vector3(-699.62, -932.7, 19.01),
     }
