@@ -20,6 +20,34 @@ function EquipParachuteAnim()
     TaskPlayAnim(PlayerPedId(), "clothingshirt", "try_shirt_positive_d", 8.0, 1.0, -1, 49, 0, 0, 0, 0)
 end
 
+function AlcoholEffect()
+    local startStamina = 8
+    local ped = PlayerPedId()
+    AlienEffect()
+    SetRunSprintMultiplierForPlayer(PlayerId(), 0.5)
+    while startStamina > 0 do
+        Wait(1000)
+        if math.random(1, 100) < 10 then
+            RestorePlayerStamina(PlayerId(), 1.0)
+        end
+        startStamina = startStamina - 1
+        if math.random(1, 100) < 60 then
+            ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.08)
+            SetPedToRagdollWithFall(ped, 1500, 2000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+        end
+        if math.random(1, 100) < 51 then
+            AlienEffect()
+        end
+    end
+    if IsPedRunning(ped) then
+        ShakeGameplayCam('SMALL_EXPLOSION_SHAKE', 0.08)
+        SetPedToRagdollWithFall(ped, 1500, 2000, 1, GetEntityForwardVector(ped), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+    end
+
+    startStamina = 0
+    SetRunSprintMultiplierForPlayer(PlayerId(), 1.0)
+end
+
 function HealOxy()
     if not healing then
         healing = true
@@ -187,13 +215,61 @@ RegisterNetEvent('consumables:client:DrinkAlcohol', function(itemName)
         alcoholCount = alcoholCount + 1
         if alcoholCount > 1 and alcoholCount < 4 then
             TriggerEvent("evidence:client:SetStatus", "alcohol", 200)
+            AlienEffect()
         elseif alcoholCount >= 4 then
             TriggerEvent("evidence:client:SetStatus", "heavyalcohol", 200)
+            AlcoholEffect()
         end
 
     end, function() -- Cancel
         TriggerEvent('animations:client:EmoteCommandStart', {"c"})
         QBCore.Functions.Notify("Cancelled..", "error")
+    end)
+end)
+
+RegisterNetEvent('consumables:client:oxy', function()
+    QBCore.Functions.Progressbar("use_oxy", "Poppe eine Pille", 2000, false, true, {
+        disableMovement = false,
+        disableCarMovement = false,
+		disableMouse = false,
+		disableCombat = true,
+    }, {
+		animDict = "mp_suicide",
+		anim = "pill",
+		flags = 49,
+    }, {}, {}, function() -- Done
+        StopAnimTask(PlayerPedId(), "mp_suicide", "pill", 1.0)
+        TriggerServerEvent("QBCore:Server:RemoveItem", "oxy", 1)
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["oxy"], "remove")
+        TriggerServerEvent('hud:server:RelieveStress', math.random(70, 80))
+        ClearPedBloodDamage(PlayerPedId())
+		HealOxy()
+    end, function() -- Cancel
+        StopAnimTask(PlayerPedId(), "mp_suicide", "pill", 1.0)
+        QBCore.Functions.Notify("Canceled", "error")
+    end)
+end)
+
+RegisterNetEvent('consumables:client:pills', function()
+    QBCore.Functions.Progressbar("use_oxy", "Werde normal", 200, false, true, {
+        disableMovement = false,
+        disableCarMovement = false,
+		disableMouse = false,
+		disableCombat = true,
+    }, {
+		animDict = "mp_suicide",
+		anim = "pill",
+		flags = 49,
+    }, {}, {}, function() -- Done
+        StopAnimTask(PlayerPedId(), "mp_suicide", "pill", 1.0)
+        TriggerServerEvent("QBCore:Server:RemoveItem", "pills", 1)
+        TriggerEvent("inventory:client:ItemBox", QBCore.Shared.Items["pills"], "remove")
+        TriggerServerEvent('hud:server:RelieveStress', math.random(20, 50))
+        ClearPedBloodDamage(PlayerPedId())
+		PillsEffect()
+    end, function() -- Cancel
+        StopAnimTask(PlayerPedId(), "mp_suicide", "pill", 1.0)
+        QBCore.Functions.Notify("Canceled", "error")
     end)
 end)
 
