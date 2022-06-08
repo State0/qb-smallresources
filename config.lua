@@ -48,6 +48,11 @@ ConsumeablesDrink = {
     ["coffee"] = math.random(20, 40),--2
     ["zeroade"] = math.random(60, 80),--4
     ["robbybubble"] = math.random(40, 60),--3
+    ["caprisun"] = math.random(20, 40),--2
+    ["statebull"] = math.random(60, 80),--4
+    ["fijiwasser"] = math.random(80, 100),--5
+    ["icetea"] = math.random(40, 60),--3
+    ["saft"] = math.random(40, 60),--3
 }
 
 ConsumeablesAlcohol = {
