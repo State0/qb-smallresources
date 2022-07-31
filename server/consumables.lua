@@ -26,6 +26,18 @@ QBCore.Functions.CreateUseableItem("wine", function(source, item)
     TriggerClientEvent("consumables:client:DrinkAlcohol", src, item.name)
 end)
 
+QBCore.Functions.CreateUseableItem("statebrau", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    TriggerClientEvent("consumables:client:DrinkAlcohol", src, item.name)
+end)
+
+QBCore.Functions.CreateUseableItem("moonshine", function(source, item)
+    local src = source
+    local Player = QBCore.Functions.GetPlayer(src)
+    TriggerClientEvent("consumables:client:DrinkAlcohol", src, item.name)
+end)
+
 ----------- / Eat
 
 QBCore.Functions.CreateUseableItem("sandwich", function(source, item)
